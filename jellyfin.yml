@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  jellyfin:
+    image: jellyfin/jellyfin
+    container_name: jellyfin
+    restart: unless-stopped
+    ports:
+      - 8096:8096
+    volumes:
+      - /home/doran/media:/media
+      - jellyfin_config:/config
+      - jellyfin_cache:/cache
+    environment:
+      - TZ=America/New_York
+
+volumes:
+  jellyfin_config:
+  jellyfin_cache:
