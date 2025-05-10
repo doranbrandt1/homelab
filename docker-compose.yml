@@ -1,0 +1,43 @@
+version: "3.9"
+
+services:
+  jellyfin:
+    image: jellyfin/jellyfin:latest
+    container_name: jellyfin
+    ports:
+      - "8096:8096"
+    volumes:
+      - ./media/config:/config
+      - ./media/cache:/cache
+      - ./media/videos:/media
+    restart: unless-stopped
+
+  qbittorrent:  # Placeholder for future use
+    image: linuxserver/qbittorrent
+    container_name: qbittorrent
+    ports:
+      - "8080:8080"
+      - "6881:6881"
+      - "6881:6881/udp"
+    volumes:
+      - ./downloads:/downloads
+      - ./qbittorrent/config:/config
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/New_York
+      - WEBUI_PORT=8080
+    restart: unless-stopped
+
+  dashboard:  # Placeholder for Heimdall or Dashy
+    image: lissy93/dashy
+    container_name: dashy
+    ports:
+      - "8081:80"
+    volumes:
+      - ./dashboard/config:/app/public/conf
+    restart: unless-stopped
+
+networks:
+  default:
+    driver: bridge
