@@ -8,12 +8,28 @@ services:
     ports:
       - 8096:8096
     volumes:
-      - /home/doran/media:/media
+      - /mnt/Media:/media
       - jellyfin_config:/config
       - jellyfin_cache:/cache
     environment:
       - TZ=America/New_York
+  tautulli:
+    image: tautulli/tautulli
+    container_name: tautulli
+    restart: unless-stopped
+    ports:
+      - 8181:8181
+    volumes:
+      - tautulli_config:/config
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/New_York
+
 
 volumes:
   jellyfin_config:
   jellyfin_cache:
+  tautulli_config:
+
+
