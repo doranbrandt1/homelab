@@ -1,0 +1,8 @@
+.env
+*.log
+*.tmp
+__pycache__/
+node_modules/
+docker_data/
+nginx/data/
+nginx/letsencrypt/

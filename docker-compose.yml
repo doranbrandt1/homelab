@@ -11,6 +11,18 @@ services:
       - ./media/cache:/cache
       - ./media/videos:/media
     restart: unless-stopped
+  
+  nginx-proxy-manager:
+    image: 'jc21/nginx-proxy-manager:latest'
+    container_name: nginx-proxy-manager
+    restart: unless-stopped
+    ports:
+      - '80:80'
+      - '81:81'    # Admin UI
+      - '443:443'
+    volumes:
+      - ./nginx/data:/data
+      - ./nginx/letsencrypt:/etc/letsencrypt
 
   qbittorrent:  # Placeholder for future use
     image: linuxserver/qbittorrent
@@ -23,8 +35,8 @@ services:
       - ./downloads:/downloads
       - ./qbittorrent/config:/config
     environment:
-      - PUID=1000
-      - PGID=1000
+      - PUID=${PUID}
+      - PGID=${PGID}
       - TZ=America/New_York
       - WEBUI_PORT=8080
     restart: unless-stopped

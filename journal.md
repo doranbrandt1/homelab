@@ -12,6 +12,8 @@
 - Set up SSH access and public key auth
 - Document entire architecture in repo
 
+---
+
 ## 🗓️ May 9, 2025 - Jellyfin + Docker Compose Success (Almost)
 
 **Major wins today:**
@@ -39,3 +41,31 @@
 - `git pull --rebase` — sync with latest remote commits, maintaining a clean history
 
 ---
+## 🗓️ May 10, 2025 – HomeLab Phase 2 Progress
+
+### ✅ Accomplishments
+- Deployed **Portainer** and confirmed UI access at `http://192.168.0.63:9000`
+- Reset Portainer admin credentials and stored them securely
+- Updated **VirtualBox** network to **Bridged Adapter** (IPv4: `192.168.0.63`)
+- Verified LAN access to **Jellyfin** and **Portainer**
+- Added **Nginx Proxy Manager** to `docker-compose.yml`
+- Created and pushed:
+  - `.env` – centralized environment variables
+  - `.gitignore` – excluded sensitive/config paths
+  - `services.md` – documented running stack
+- Committed and pushed updates to GitHub using structured messages
+
+---
+
+### 📋 Checklist for Tomorrow
+- [ ] Log into Nginx Proxy Manager at `http://192.168.0.63:81`
+- [ ] Change default credentials (`admin@example.com / changeme`)
+- [ ] Create proxy routes:
+  - [ ] `portainer.local`
+  - [ ] `jellyfin.local`
+- [ ] Update `hosts` file on Windows:
+  ```plaintext
+  192.168.0.63 jellyfin.local
+  192.168.0.63 portainer.local
+- [ ] Create homelab_net docker network to apply to services
+  - [ ] Deploy next container: (either tautulli, ombi, homeassistant)
