@@ -42,7 +42,7 @@
 
 ---
 
-## May 10, 2025 – HomeLab Phase 2 Progress
+## May 10, 2025 – Portainer Reset, Network Adaption
 
 ### Wins
 - Deployed Portainer and confirmed UI access at `http://192.168.0.63:9000`
