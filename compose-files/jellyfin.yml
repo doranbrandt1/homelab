@@ -6,30 +6,23 @@ services:
     container_name: jellyfin
     restart: unless-stopped
     ports:
-      - 8096:8096
+      - "${JELLYFIN_PORT}:8096"
     volumes:
-      - /mnt/Media:/media
-      - jellyfin_config:/config
-      - jellyfin_cache:/cache
-    environment:
-      - TZ=America/New_York
-  tautulli:
-    image: tautulli/tautulli
-    container_name: tautulli
+      - ./media/media
+      - ./data/jellyfin/config:/config
+      - ./data/jellyfin/cache:/cache
     restart: unless-stopped
-    ports:
-      - 8181:8181
-    volumes:
-      - tautulli_config:/config
     environment:
-      - PUID=1000
-      - PGID=1000
+      - PUID=${PUID}
+      - PGID=${PGID}
       - TZ=America/New_York
+    networks:
+      - homelab_net
+
+networks:
+  homelab_net:
+    external: true
 
 
-volumes:
-  jellyfin_config:
-  jellyfin_cache:
-  tautulli_config:
 
 
