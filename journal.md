@@ -68,3 +68,48 @@
   192.168.0.63 portainer.local
 - [ ] Create homelab_net docker network to apply to services
   - [ ] Deploy next container: (either tautulli, ombi, homeassistant)
+
+---
+
+## May 12, 2025 – Day 3
+
+### Wins
+- Rebuilt missing `.env` with structured, pre-defined container ports
+- Standardized all Docker volumes under a central `/data` directory
+- Refactored `jellyfin.yml`, `portainer.yml`, `npm.yml`, and `tautulli.yml` with updated volume paths and shared `homelab_net`
+- Created and committed a detailed `data/README.md` to document volume structure
+- Added Tautulli service with future-proofed environment and config paths
+- Introduced a powerful `Makefile` for orchestrating multi-compose deployments
+- Cleaned up `.env`, tracked future service ports (Ombi, Home Assistant)
+- Learned and documented **Conventional Commit** patterns for structured Git commits
+
+### Opportunities / Next Steps
+- Create `/data` backup system (versioned, weekly snapshots via `tar` or `rsync`)
+- Add `make backup` command to Makefile for one-liner archiving
+- Add `COMMIT_GUIDE.md` or repo onboarding doc for new contributors (or Future You™)
+- Set up proxy hosts in Nginx Proxy Manager once login is created
+- Begin container branching (e.g. `feature/ombi`) to isolate builds and testing
+- Start logging container metrics into `/logs` or dashboard view (via Portainer or NPM)
+
+### Notes & Commands
+
+#### Volume Paths (Standardized)
+```bash
+- ./data/jellyfin/config:/config
+- ./data/jellyfin/cache:/cache
+- ./data/portainer/data:/data
+- ./data/npm/data:/data
+- ./data/npm/letsencrypt:/etc/letsencrypt
+- ./data/tautulli/config:/config
+
+#### Makefile Usage
+- make up           # launch full stack
+- make down         # stop all containers
+- make restart      # restart everything
+- make logs         # view combined logs
+- make tautulli-up  # just run Tautulli
+
+#### Git Workflow
+- git add .
+- git commit -m "chore: add Makefile for multi-compose orchestration"
+- git push origin main
