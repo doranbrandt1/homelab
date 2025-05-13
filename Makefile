@@ -30,3 +30,6 @@ tautulli-logs:
 
 ps:
 	docker compose $(COMPOSE_FILES) ps
+
+backup:
+	bash scripts/backup-data.sh

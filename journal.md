@@ -113,3 +113,41 @@
 - git add .
 - git commit -m "chore: add Makefile for multi-compose orchestration"
 - git push origin main
+
+---
+
+## 🗓️ May 13, 2025 – Backup System Locked In
+
+### Wins
+- Installed and configured WSL with Ubuntu for full bash support
+- Built and tested a portable backup script (`backup-data.sh`) for the `/data` directory
+- Created compressed `.tar.gz` snapshots stored in `/backups` with timestamped naming
+- Handled common WSL extraction errors by updating the script with `--no-same-owner` and `--no-overwrite-dir` flags
+- Added a `make backup` target to streamline snapshot creation from the Makefile
+- Verified backup integrity and successful extraction into `test-restore/`
+
+---
+
+### Opportunities / Next Steps
+- Add `make restore-latest` to simplify recovering from backup
+- Add backup rotation to retain only the 5 most recent snapshots
+- Create `scripts/README.md` to document backup usage
+- Optionally generate a `backup-log.md` for tracking daily snapshot history
+
+---
+
+### Notes & Commands
+
+#### Backup Creation
+```bash
+make backup
+
+#### Backup Script Location
+scripts/backup-data.sh
+
+#### Test Archive Contents
+tar -tzvf backups/data_backup_<timestamp>.tar.gz
+
+#### Extract Backup to Folder
+mkdir restore-test
+tar --no-overwrite-dir --no-same-owner -xzvf backups/data_backup_<timestamp>.tar.gz -C restore-test
