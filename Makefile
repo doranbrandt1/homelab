@@ -33,3 +33,21 @@ ps:
 
 backup:
 	bash scripts/backup-data.sh
+
+restore:
+	bash scripts/restore-latest.sh
+
+prune:
+	bash scripts/prune-backups.sh
+
+homeassistant-up:
+	docker compose -f compose-files/homeassistant.yml up -d
+
+homeassistant-down:
+	docker compose -f compose-files/homeassistant.yml down
+
+homeassistant-logs:
+	docker compose -f compose-files/homeassistant.yml logs -f
+
+show-env:
+	@echo "Current .env Variables:" && echo && cat .env

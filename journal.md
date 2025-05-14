@@ -116,7 +116,7 @@
 
 ---
 
-## 🗓️ May 13, 2025 – Backup System Locked In
+## May 13, 2025 – Backup System Locked In
 
 ### Wins
 - Installed and configured WSL with Ubuntu for full bash support
@@ -126,15 +126,11 @@
 - Added a `make backup` target to streamline snapshot creation from the Makefile
 - Verified backup integrity and successful extraction into `test-restore/`
 
----
-
 ### Opportunities / Next Steps
 - Add `make restore-latest` to simplify recovering from backup
 - Add backup rotation to retain only the 5 most recent snapshots
 - Create `scripts/README.md` to document backup usage
 - Optionally generate a `backup-log.md` for tracking daily snapshot history
-
----
 
 ### Notes & Commands
 
@@ -151,3 +147,28 @@ tar -tzvf backups/data_backup_<timestamp>.tar.gz
 #### Extract Backup to Folder
 mkdir restore-test
 tar --no-overwrite-dir --no-same-owner -xzvf backups/data_backup_<timestamp>.tar.gz -C restore-test
+
+## May 14, 2025 – Home Assistant Integration & Proxy Setup
+
+### Completed:
+- Built and deployed Home Assistant container via Docker Compose
+- Added `homeassistant.yml` to `compose-files/` with persistent config mount
+- Established `home_net` bridge network for container interconnectivity
+- Updated `.env` and `.env.example` with dynamic port/network vars
+- Integrated HA with Nginx Proxy Manager (`npm.yml`)
+- Patched multiple `Makefile` targets for HA (up, down, logs)
+- Added `make show-env` for rapid environment debug output
+- Cleaned up old Docker networks (`homeassistant_net`, etc.)
+- Successfully verified container startup and port bindings
+
+### Notes:
+- Bug stemmed from mismatch between `${HA_NETWORK}` and declared `home_net`
+- Environment variables in `networks:` block (YAML keys) are fragile across Compose versions
+- Using hardcoded `home_net` simplifies proxy integration for now
+- Home Assistant container confirmed accessible on local network
+- `.env` still tracked locally only (ignored by Git per `.gitignore`)
+
+### Next Up:
+- Finalize Nginx Proxy Manager web access on port `81`
+- Add first proxy host for Home Assistant UI
+- Expand homelab services (e.g. MQTT, Tautulli routing)
