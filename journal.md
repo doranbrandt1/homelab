@@ -172,3 +172,25 @@ tar --no-overwrite-dir --no-same-owner -xzvf backups/data_backup_<timestamp>.tar
 - Finalize Nginx Proxy Manager web access on port `81`
 - Add first proxy host for Home Assistant UI
 - Expand homelab services (e.g. MQTT, Tautulli routing)
+
+---
+
+## 2025-05-15 – Homelab Progress Log
+
+### Highlights
+- Reconfigured backup rotation system with dynamic retention via `.env`
+- Docker Compose YAMLs refactored with shared external `home_net` network
+- Fixed container-specific variables and logging under `make show-env`
+- Initialized `homeassistant.yml` with working container network separation
+- Resolved SSH push issue via WSL agent authentication
+
+### Issues Faced
+- Docker Compose failing due to conflicting network declarations (`network_mode` vs. `networks`)
+- SSH permission denied when pushing from VS Code (resolved via WSL SSH agent)
+
+### Next Steps
+- Finalize Nginx Proxy Manager config
+- Expose Home Assistant via NPM reverse proxy
+- Plan for dynamic service routing and domain-based access
+
+---
