@@ -51,3 +51,9 @@ homeassistant-logs:
 
 show-env:
 	@echo "Current .env Variables:" && echo && cat .env
+
+mac-test:
+	docker compose -f compose-files/portainer.yml -f compose-files/jellyfin.yml up -d
+
+mac-down:
+	docker compose -f compose-files/portainer.yml -f compose-files/jellyfin.yml down
