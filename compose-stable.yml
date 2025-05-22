@@ -1,0 +1,65 @@
+version: "3.9"
+
+services:
+  jellyfin:
+    image: jellyfin/jellyfin:latest
+    container_name: jellyfin
+    ports:
+      - "8096:8096"
+    volumes:
+      - ./media/config:/config
+      - ./media/cache:/cache
+      - ./media/videos:/media
+    restart: unless-stopped
+  
+  nginx-proxy-manager:
+    image: 'jc21/nginx-proxy-manager:latest'
+    container_name: nginx-proxy-manager
+    restart: unless-stopped
+    ports:
+      - '80:80'
+      - '81:81'    # Admin UI
+      - '443:443'
+    volumes:
+      - ./nginx/data:/data
+      - ./nginx/letsencrypt:/etc/letsencrypt
+
+  qbittorrent:  # Placeholder for future use
+    image: linuxserver/qbittorrent
+    container_name: qbittorrent
+    ports:
+      - "8080:8080"
+      - "6881:6881"
+      - "6881:6881/udp"
+    volumes:
+      - ./downloads:/downloads
+      - ./qbittorrent/config:/config
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=America/New_York
+      - WEBUI_PORT=8080
+    restart: unless-stopped
+
+  dashboard:  # Placeholder for Heimdall or Dashy
+    image: lissy93/dashy
+    container_name: dashy
+    ports:
+      - "8081:80"
+    volumes:
+      - ./dashboard/config:/app/public/conf
+    restart: unless-stopped
+
+  homeassistant:
+    container_name: home-assistant
+    ports:
+      - "8123:8123"
+    image: ghcr.io/home-assistant/home-assistant:stable
+    volumes:
+      - ./homeassistant/config:/config
+      - /etc/localtime:/etc/localtime:ro
+    restart: unless-stopped
+
+networks:
+  default:
+    driver: bridge
