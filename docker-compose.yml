@@ -59,9 +59,6 @@ services:
       - ./homeassistant/config:/config
       - /etc/localtime:/etc/localtime:ro
     restart: unless-stopped
-    
-
-
 
 networks:
   default:
