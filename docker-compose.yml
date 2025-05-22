@@ -50,6 +50,19 @@ services:
       - ./dashboard/config:/app/public/conf
     restart: unless-stopped
 
+  homeassistant:
+    container_name: home-assistant
+    ports:
+      - "8123:8123"
+    image: ghcr.io/home-assistant/home-assistant:stable
+    volumes:
+      - ./homeassistant/config:/config
+      - /etc/localtime:/etc/localtime:ro
+    restart: unless-stopped
+    
+
+
+
 networks:
   default:
     driver: bridge
