@@ -1,0 +1,66 @@
+[
+  {
+    "service": "jellyfin",
+    "ip": "172.24.0.5",
+    "port": 8096,
+    "alias": "jellyfin.local",
+    "status": "Healthy",
+    "timestamp": "2025-05-24T15:15:00"
+  },
+  {
+    "service": "homeassistant",
+    "ip": "172.24.0.8",
+    "port": 8123,
+    "alias": "homeassistant.local",
+    "status": "Down",
+    "timestamp": "2025-05-24T15:15:00"
+  },
+  {
+    "service": "jellyfin",
+    "ip": "172.24.0.5",
+    "port": 8096,
+    "alias": "jellyfin.local",
+    "status": "Healthy",
+    "timestamp": "2025-05-24T12:48:56.253901"
+  },
+  {
+    "service": "homeassistant",
+    "ip": "172.24.0.8",
+    "port": 8123,
+    "alias": "homeassistant.local",
+    "status": "Down",
+    "timestamp": "2025-05-24T12:48:57.255159"
+  },
+  {
+    "service": "jellyfin",
+    "ip": "172.24.0.5",
+    "port": 8096,
+    "alias": "jellyfin.local",
+    "status": "Healthy",
+    "timestamp": "2025-05-24T16:42:20.210846"
+  },
+  {
+    "service": "homeassistant",
+    "ip": "172.24.0.8",
+    "port": 8123,
+    "alias": "homeassistant.local",
+    "status": "Down",
+    "timestamp": "2025-05-24T16:42:21.212492"
+  },
+  {
+    "service": "jellyfin",
+    "ip": "172.24.0.5",
+    "port": 8096,
+    "alias": "jellyfin.local",
+    "status": "Healthy",
+    "timestamp": "2025-05-24T17:03:43.954399"
+  },
+  {
+    "service": "homeassistant",
+    "ip": "172.24.0.8",
+    "port": 8123,
+    "alias": "homeassistant.local",
+    "status": "Down",
+    "timestamp": "2025-05-24T17:03:44.955955"
+  }
+]

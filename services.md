@@ -34,7 +34,7 @@ This file documents all Docker containers and their key configuration details.
 - **Volumes**:
   - `./homeassistant/config:/config`
   - `/etc/localtime:/etc/localtime:ro`
-- **Network**: `homeassistant_net`
+- **Network**: `home_net`
 - **Notes**:
   - Accessible at `http://<VM-IP>:8123`
   - Requires persistent volume for config

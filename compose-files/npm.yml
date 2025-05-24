@@ -11,10 +11,9 @@ services:
       - ./nginx/data:/data
       - ./nginx/letsencrypt:/etc/letsencrypt
     networks:
-      - npm
-      - ${HA_NETWORK}
+      - default
 
 networks:
-  npm:
-  home_net:
+  default:
+    name: home_net
     external: true

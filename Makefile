@@ -57,3 +57,15 @@ mac-test:
 
 mac-down:
 	docker compose -f compose-files/portainer.yml -f compose-files/jellyfin.yml down
+
+restart-ha:
+	docker restart home-assistant
+
+health-check:
+	docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}" | column -t
+
+health:
+	@python3 health_check.py
+
+dashboard:
+	@.venv/bin/python3 health_dashboard.py

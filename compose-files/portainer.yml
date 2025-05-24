@@ -10,8 +10,8 @@ services:
       - ./data/portainer/data:/data
     restart: unless-stopped
     networks:
-      - homelab_net
+      - home_net
 
 networks:
-  homelab_net:
+  home_net:
     external: true

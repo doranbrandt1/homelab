@@ -1,0 +1,16 @@
+[
+  {
+    "name": "jellyfin",
+    "ip": "172.24.0.5",
+    "port": 8096,
+    "alias": "jellyfin.local",
+    "status": "unknown"
+  },
+  {
+    "name": "homeassistant",
+    "ip": "172.24.0.8",
+    "port": 8123,
+    "alias": "homeassistant.local",
+    "status": "unknown"
+  }
+]

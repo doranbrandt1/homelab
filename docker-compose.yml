@@ -11,6 +11,8 @@ services:
       - ./media/cache:/cache
       - ./media/videos:/media
     restart: unless-stopped
+    networks:
+      - home_net
   
   nginx-proxy-manager:
     image: 'jc21/nginx-proxy-manager:latest'
@@ -23,6 +25,8 @@ services:
     volumes:
       - ./nginx/data:/data
       - ./nginx/letsencrypt:/etc/letsencrypt
+    networks:
+      - home_net
 
   qbittorrent:  # Placeholder for future use
     image: linuxserver/qbittorrent
@@ -40,6 +44,8 @@ services:
       - TZ=America/New_York
       - WEBUI_PORT=8080
     restart: unless-stopped
+    networks:
+      - home_net
 
   dashboard:  # Placeholder for Heimdall or Dashy
     image: lissy93/dashy
@@ -49,6 +55,8 @@ services:
     volumes:
       - ./dashboard/config:/app/public/conf
     restart: unless-stopped
+    networks:
+      - home_net
 
   homeassistant:
     container_name: home-assistant
@@ -59,7 +67,9 @@ services:
       - ./homeassistant/config:/config
       - /etc/localtime:/etc/localtime:ro
     restart: unless-stopped
+    networks:
+      - home_net
 
 networks:
-  default:
-    driver: bridge
+  home_net:
+    external: true

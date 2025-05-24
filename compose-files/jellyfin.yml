@@ -6,21 +6,24 @@ services:
     container_name: jellyfin
     restart: unless-stopped
     ports:
-      - "${JELLYFIN_PORT}:8096"
+      - "8096:8096"
     volumes:
-      - ./media/media
+      - /mnt/c/Users/User/_Media:/media
       - ./data/jellyfin/config:/config
       - ./data/jellyfin/cache:/cache
-    restart: unless-stopped
+
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
       - TZ=America/New_York
     networks:
-      - homelab_net
+      home_net:
+        aliases:
+          - jellyfin
+
 
 networks:
-  homelab_net:
+  home_net:
     external: true
 
 
