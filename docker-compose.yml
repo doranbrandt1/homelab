@@ -70,6 +70,9 @@ services:
     networks:
       - home_net
 
+  nextcloud:
+    <<: *nextcloud  # If you use YAML anchors
+
 networks:
   home_net:
     external: true

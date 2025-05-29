@@ -39,3 +39,12 @@ This file documents all Docker containers and their key configuration details.
   - Accessible at `http://<VM-IP>:8123`
   - Requires persistent volume for config
   - `TZ` is passed in via `.env`
+
+### Nextcloud
+- Service: Nextcloud (Cloud Storage)
+- Local URL: http://cloud.local
+- Port: 8081 (host) → 80 (container)
+- Proxy Host: cloud.local → nextcloud:80
+- Volumes:
+  - `compose-files/data/nextcloud/html:/var/www/html`
+  - `compose-files/data/nextcloud/db:/var/lib/mysql`

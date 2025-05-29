@@ -40,6 +40,17 @@ restore:
 prune:
 	bash scripts/prune-backups.sh
 
+jellyfin-up:
+	docker compose -f compose-files/jellyfin.yml up -d
+
+jellyfin-down:
+	docker compose -f compose-files/jellyfin.yml down
+
+reset-jellyfin:
+	docker stop jellyfin && docker rm jellyfin
+	rm -rf compose-files/data/jellyfin
+	mkdir -p compose-files/data/jellyfin/config compose-files/data/jellyfin/cache
+
 homeassistant-up:
 	docker compose -f compose-files/homeassistant.yml up -d
 
@@ -48,6 +59,18 @@ homeassistant-down:
 
 homeassistant-logs:
 	docker compose -f compose-files/homeassistant.yml logs -f
+
+nextcloud-up:
+	docker compose -f compose-files/nextcloud.yml up -d
+
+nextcloud-down:
+	docker compose -f compose-files/nextcloud.yml down
+
+reset-nextcloud:
+	docker stop nextcloud nextcloud-db || true
+	docker rm nextcloud nextcloud-db || true
+	rm -rf compose-files/data/nextcloud
+	mkdir -p compose-files/data/nextcloud/html compose-files/data/nextcloud/db
 
 show-env:
 	@echo "Current .env Variables:" && echo && cat .env
